@@ -8,54 +8,8 @@ function signToUnsign (value){
     }
 }
 
-function bisection (value1, value2){
-    let xrpre = null;
-    let ea = 100;
-    let tabel = [];
-
-    for(i=1; i<=50; i++){
-        if(signToUnsign(ea) < 2){
-            break;
-        }
-
-        xu = parseFloat(value2);
-        xl = parseFloat(value1);
-        fxl = (5-(5*(value1))-(Math.E**(0.5*value1)));
-        fxu = (5-(5*(value2))-(Math.E**(0.5*value2)));
-
-        if(fxl*fxu > 0){
-            break;
-        }
-
-        xr = (value1 + value2)/2;
-        fxr = (5-(5*(xr))-(Math.E**(0.5*xr)));
-        ea = ((xr-xrpre)/xr)*100;
-
-        tabel.push({iteration : i, xl : xl.toFixed(3), fxl : fxl.toFixed(3), xu: xu.toFixed(3), fxu: fxu.toFixed(3), xr: xr.toFixed(3), fxr: fxr.toFixed(3), 'ea %': signToUnsign(ea).toFixed(3)});
-
-        if(fxr < 0){
-            value2 = xu;
-            value1 = xr;
-            xrpre = xr;
-        }else {
-            value2 = xr;
-            value1 = xl;
-            xrpre = xr;
-        }
-    }
-    return tabel;
-}
-
-function newtonRaphson (xi){
-
-}
-
-function secant (xii, xi){
-
-}
-
 let kondisi = true;
-let i = 1;
+let j = 1;
 
 while(kondisi){
     console.log('\nOPEN METHOD PROGRAM');
@@ -70,11 +24,45 @@ while(kondisi){
         console.log('BISECTION ALGORITHM')
         console.log('-------------------\n')
 
-        let xl = prompt("Masukkan initial guess xl: ");
-        let xu = prompt("Masukkan initial guess xu: ");
+        let value1 = prompt("Masukkan initial guess xl: ");
+        let value2 = prompt("Masukkan initial guess xu: ");
 
-        let hasil = bisection(parseInt(xl), parseInt(xu));
-        console.table(hasil);
+        let xrpre = null;
+        let ea = 100;
+        let tabel = [];
+
+        for(let i=1; i<=50; i++){
+            if(signToUnsign(ea) < 2){
+                break;
+            }
+
+            xl = value1;
+            xu = value2;
+            fxl = (5-(5*(xl))-(Math.E**(0.5*xl)));
+            fxu = (5-(5*(xu))-(Math.E**(0.5*xu)));
+
+            if(fxl*fxu > 0){
+                break;
+            }
+
+            xr = ((xl + xu)/2);
+            fxr = (5-(5*(xr))-(Math.E**(0.5*xr)));
+            ea = ((xr-xrpre)/xr)*100;
+
+            tabel.push({iteration : i, xl : xl, fxl : fxl, xu: xu, fxu: fxu, xr: xr, fxr: fxr, 'ea %': signToUnsign(ea)});
+
+            if(fxr < 0){
+                value2 = xu;
+                value1 = xr;
+                xrpre = xr;
+            }else {
+                value2 = xr;
+                value1 = xl
+                xrpre = xr;
+            }
+        }
+        console.table(tabel);
+        break;
 
     }else if(parseInt(pilihan)===2){
 
@@ -85,5 +73,5 @@ while(kondisi){
     }
 
     console.log('\n-----------------------------------------------------------------------------------------------------------\n');
-    i++
+    j++
 }
