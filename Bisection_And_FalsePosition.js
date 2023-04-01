@@ -43,7 +43,7 @@ let xrpre = null;
 let ea = 100;
 let tabelnya = [];
 
-for(i = 1; i<=15; i++){
+for(i = 1; i<=20; i++){
     if(signToUnsign(ea) < 0.1){
         break;
     }
