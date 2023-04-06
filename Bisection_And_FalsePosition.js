@@ -18,7 +18,7 @@ function rumusXrBisection (xl, xu){
 }
 
 function rumusXrFalsePosition (xl, xu, fxl, fxu){
-    return xu - ((fxu*(xl-xu))/fxl-fxu);
+    return xu - ((fxu*(xl-xu))/(fxl-fxu));
 }
 
 function rumusEa (xrnow, xrpre) {
