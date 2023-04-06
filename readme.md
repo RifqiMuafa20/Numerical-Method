@@ -1,7 +1,5 @@
 There are two cases of finding the roots of an equation using a computer program
 
-~~~
-
 1. Case 1
 
 The velocity v of a falling parachutist is given by:
